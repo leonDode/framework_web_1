@@ -1,5 +1,5 @@
-# framework_web_1
+# Framework Web I
 Trabalho da disciplina de frameworks para desenvolvimento web I
-### Leon Dode
-### Gabriela Cavalheiro
-### Pedro Menna
+### - Leon Dode
+### - Gabriela Cavalheiro
+### - Pedro Menna
