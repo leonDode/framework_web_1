@@ -14,7 +14,7 @@ export default function WelcomeScreen() {
     useEffect(()=>{
         ring2padding.value = 0;
         setTimeout(()=> ring2padding.value = withSpring(ring2padding.value+hp(5.5)), 300);
-        setTimeout(()=> navigation.navigate("Main"),2500)
+        setTimeout(()=> navigation.navigate("Login"),2500)
     },[])
 
 

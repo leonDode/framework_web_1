@@ -4,6 +4,8 @@ import AlarmScreen from '../screens/AlarmScreen';
 import DataScreen from '../screens/DataScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
+import LoginScreen from '../screens/login/loginScreen';
+import SignUpScreen from '../screens/login/SignUpScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Ionicons} from '@expo/vector-icons'
@@ -21,7 +23,7 @@ function MainTabs() {
         tabBarShowLabel: false,
         tabBarStyle:{
             position :'absolute',
-            backgroundColor: 'rgb(8 51 68)',
+            backgroundColor: 'rgb(0 0 0)',
             borderTopWidth: 0,
             bottom:10,
             left:14,
@@ -95,6 +97,8 @@ function MainTabs() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Welcome' screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Main" component={MainTabs} />
         </Stack.Navigator>
       </NavigationContainer>
