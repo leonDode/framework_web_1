@@ -3,6 +3,7 @@ import { Image, View,Text } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
 import { StatusBar } from "expo-status-bar"
 import { TouchableOpacity } from "react-native"
+import { KeyboardAvoidingView, ScrollView } from 'react-native';
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated"
 
 export default function SignUpScreen(){
