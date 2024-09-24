@@ -4,6 +4,9 @@ import { StatusBar } from "expo-status-bar";
 import { View,Image,Text } from "react-native";
 import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { onAuthStateChanged } from "@firebase/auth";
+import { auth } from '../firebase';
+
 
 export default function WelcomeScreen() {
 
@@ -14,7 +17,22 @@ export default function WelcomeScreen() {
     useEffect(()=>{
         ring2padding.value = 0;
         setTimeout(()=> ring2padding.value = withSpring(ring2padding.value+hp(5.5)), 300);
-        setTimeout(()=> navigation.navigate("Login"),2500)
+
+
+
+        const unSubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // Se o usuário estiver autenticado, navegue para a HomeScreen
+            navigation.navigate("Main");
+          } else {
+            // Se o usuário não estiver autenticado, navegue para a tela de Login
+            setTimeout(() => navigation.navigate("Login"), 2500);
+          }
+        });
+    
+        // Limpar o observador ao desmontar o componente
+        return () => unSubscribe();
+
     },[])
 
 
