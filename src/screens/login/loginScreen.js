@@ -15,6 +15,7 @@ export default function LoginScreen() {
       await signInWithEmailAndPassword(auth, email, password);
       navigation.push('Main');
     } catch (error) {
+      //ajuste
       console.error('Erro ao fazer login:', error.message);
     }
   };

@@ -45,6 +45,8 @@ export default function SignUpScreen() {
             />
           </Animated.View>
 
+          
+{/* <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="bg-white/5 p-5 rounded-2xl w-full"> */}
           <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="bg-black/5 p-5 rounded-2xl w-full border border-cyan-400">
             <TextInput
               placeholder="Senha"
@@ -55,6 +57,7 @@ export default function SignUpScreen() {
             />
           </Animated.View>
 
+{/* <Animated.View entering={FadeInDown.delay(200).duration(1000).springify()} className="bg-white/5 p-5 rounded-2xl w-full"> */}
           <Animated.View entering={FadeInDown.delay(400).duration(1000).springify()} className="bg-black/5 p-5 rounded-2xl w-full border border-cyan-400">
             <TextInput
               placeholder="Confirmar Senha"
@@ -64,6 +67,7 @@ export default function SignUpScreen() {
               onChangeText={setConfirmPassword}
             />
           </Animated.View>
+
 
           <Animated.View entering={FadeInDown.delay(600).duration(1000).springify()} className="w-full">
             <TouchableOpacity className="w-full bg-cyan-400 p-3 rounded-2xl mb-3" onPress={handleSignUp}>
