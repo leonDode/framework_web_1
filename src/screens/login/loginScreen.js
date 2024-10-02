@@ -38,6 +38,7 @@ export default function LoginScreen() {
               placeholderTextColor="white"
               value={email}
               onChangeText={setEmail}
+              style={{ color: 'white' }}
             />
           </Animated.View>
 
@@ -48,6 +49,7 @@ export default function LoginScreen() {
               secureTextEntry
               value={password}
               onChangeText={setPassword}
+              style={{ color: 'white' }}
             />
           </Animated.View>
 
