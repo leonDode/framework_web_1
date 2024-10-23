@@ -38,6 +38,7 @@ export default function WelcomeScreen() {
 
   return (
     <View className="flex-1 justify-center items-center space-y-10 bg-cyan-950">
+      {/*    <View className="flex-1 justify-center bg-cyan-950">*/}
     <StatusBar style="light" />
 
    

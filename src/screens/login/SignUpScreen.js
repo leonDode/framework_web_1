@@ -26,7 +26,7 @@ export default function SignUpScreen() {
 
   return (
     <View className="bg-cyan-950 h-full w-full">
-      <View className="flex-row justify-center w-full absolute mt-8">
+      <View className="flex-row justify-center w-full absolute mt-10">
         <Animated.Image
           entering={FadeInUp.delay(200).duration(1000).springify()}
           className="h-[200] w-[420]"
@@ -34,7 +34,7 @@ export default function SignUpScreen() {
         />
       </View>
 
-      <View className="h-full w-full flex justify-around pt-40">
+      <View className="h-full w-full flex justify-around pt-40 mt-10">
         <View className="flex items-center mx-4 space-y-4">
           <Animated.View entering={FadeInDown.duration(1000).springify()} className="bg-black/5 p-5 rounded-2xl w-full border border-cyan-400">
             <TextInput
@@ -42,6 +42,8 @@ export default function SignUpScreen() {
               placeholderTextColor="white"
               value={email}
               onChangeText={setEmail}
+              style={{ color: 'white' }}
+              keyboardType="default"
             />
           </Animated.View>
 
@@ -54,6 +56,8 @@ export default function SignUpScreen() {
               secureTextEntry
               value={password}
               onChangeText={setPassword}
+              style={{ color: 'white' }}
+              keyboardType="default"
             />
           </Animated.View>
 
@@ -65,6 +69,8 @@ export default function SignUpScreen() {
               secureTextEntry
               value={confirmPassword}
               onChangeText={setConfirmPassword}
+              style={{ color: 'white' }}
+              keyboardType="default"
             />
           </Animated.View>
 
