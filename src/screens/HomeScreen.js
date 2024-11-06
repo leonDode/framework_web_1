@@ -1,19 +1,24 @@
-import React from "react";
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigation } from "@react-navigation/native";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Button,
-  Alert,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
+  const [currentTime, setCurrentTime] = useState("");
+
+  const updateTime = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0"); // Obter as horas
+    const minutes = now.getMinutes().toString().padStart(2, "0"); // Obter os minutos
+
+    setCurrentTime(`${hours}:${minutes}`);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <View className="bg-cyan-950 h-full w-full">
@@ -36,18 +41,18 @@ export default function HomeScreen() {
               onPress={() => Alert.alert("Botão 1 Pressionado")}
             >
               <Text className="text-white text-lg text-center">
-                Quando devo ir pra cada?
+                Quando devo ir pra cama?
               </Text>
             </TouchableOpacity>
           </Animated.View>
 
           <Animated.View
             entering={FadeInDown.delay(200).duration(1000).springify()}
-            className="bg-black/5s p-5 rounded-2xl w-full border border-cyan-400"
+            className="bg-black/5 p-5 rounded-2xl w-full border border-cyan-400"
           >
             <TouchableOpacity
               className="py-2 px-4 rounded"
-              onPress={() => Alert.alert("Botão 2 Pressionado")}
+              onPress={() => navigation.navigate("WakeUp")}
             >
               <Text className="text-white text-lg text-center">
                 Vai Dormir Agora?
@@ -56,14 +61,10 @@ export default function HomeScreen() {
           </Animated.View>
 
           <Animated.View
-            entering={FadeInDown.delay(400).duration(1000).springify()}
-            className="w-full"
-          ></Animated.View>
-          <Animated.View
             entering={FadeInDown.delay(600).duration(1000).springify()}
             className="flex-row justify-center"
           >
-            <Text className="text-white">O que e ciclo circadiano? </Text>
+            <Text className="text-white">O que é ciclo circadiano? </Text>
             <TouchableOpacity>
               <Text className="text-cyan-400">Saiba Mais</Text>
             </TouchableOpacity>

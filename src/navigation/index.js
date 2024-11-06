@@ -1,13 +1,14 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
-import AlarmScreen from '../screens/AlarmScreen';
-import DataScreen from '../screens/DataScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import LoginScreen from '../screens/login/loginScreen';
-import SignUpScreen from '../screens/login/SignUpScreen';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "../screens/HomeScreen";
+import AlarmScreen from "../screens/AlarmScreen";
+import DataScreen from "../screens/DataScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import WelcomeScreen from "../screens/WelcomeScreen";
+import LoginScreen from "../screens/login/loginScreen";
+import SignUpScreen from "../screens/login/SignUpScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Ionicons } from "@expo/vector-icons";
+import WakeUpTimesScreen from "../screens/WakeUpTimes";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -15,11 +16,11 @@ const Stack = createStackNavigator();
 function MainTabs() {
   return (
     <Tab.Navigator
-      screenOptions={{ 
+      screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          position: 'absolute',
-          backgroundColor: 'rgb(0 0 0)',
+          position: "absolute",
+          backgroundColor: "rgb(0 0 0)",
           borderTopWidth: 0,
           bottom: 10,
           left: 14,
@@ -27,7 +28,7 @@ function MainTabs() {
           elevation: 0,
           borderRadius: 4,
           height: 50,
-        }
+        },
       }}
     >
       <Tab.Screen
@@ -37,9 +38,11 @@ function MainTabs() {
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             if (focused) {
-              return <Ionicons name='home' size={size} color={'rgb(34 211 238)'} />;
+              return (
+                <Ionicons name="home" size={size} color={"rgb(34 211 238)"} />
+              );
             }
-            return <Ionicons name='home-outline' size={size} color={color} />;
+            return <Ionicons name="home-outline" size={size} color={color} />;
           },
         }}
       />
@@ -50,9 +53,11 @@ function MainTabs() {
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             if (focused) {
-              return <Ionicons name='alarm' size={size} color={'rgb(34 211 238)'} />;
+              return (
+                <Ionicons name="alarm" size={size} color={"rgb(34 211 238)"} />
+              );
             }
-            return <Ionicons name='alarm-outline' size={size} color={color} />;
+            return <Ionicons name="alarm-outline" size={size} color={color} />;
           },
         }}
       />
@@ -63,9 +68,17 @@ function MainTabs() {
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             if (focused) {
-              return <Ionicons name='bar-chart' size={size} color={'rgb(34 211 238)'} />;
+              return (
+                <Ionicons
+                  name="bar-chart"
+                  size={size}
+                  color={"rgb(34 211 238)"}
+                />
+              );
             }
-            return <Ionicons name='bar-chart-outline' size={size} color={color} />;
+            return (
+              <Ionicons name="bar-chart-outline" size={size} color={color} />
+            );
           },
         }}
       />
@@ -76,9 +89,11 @@ function MainTabs() {
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
             if (focused) {
-              return <Ionicons name='person' size={size} color={'rgb(34 211 238)'} />;
+              return (
+                <Ionicons name="person" size={size} color={"rgb(34 211 238)"} />
+              );
             }
-            return <Ionicons name='person-outline' size={size} color={color} />;
+            return <Ionicons name="person-outline" size={size} color={color} />;
           },
         }}
       />
@@ -88,11 +103,15 @@ function MainTabs() {
 
 function AppNavigation() {
   return (
-    <Stack.Navigator initialRouteName='Welcome' screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Main" component={MainTabs} />
+      <Stack.Screen name="WakeUp" component={WakeUpTimesScreen} />
     </Stack.Navigator>
   );
 }
