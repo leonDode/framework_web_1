@@ -57,7 +57,7 @@ export default function DataScreen() {
 
   return (
     <View className="flex-1 justify-center items-center p-4 bg-gray-800">
-      <Text className="text-white text-2xl mb-6">
+      <Text className="text-white text-2xl mb-6 font-custom">
         Histórico de Horários de Sono
       </Text>
       {sleepData.length > 0 ? (
@@ -89,7 +89,7 @@ export default function DataScreen() {
           }}
         />
       ) : (
-        <Text className="text-white text-lg">
+        <Text className="text-white text-lg font-custom">
           Nenhum dado de sono disponível.
         </Text>
       )}

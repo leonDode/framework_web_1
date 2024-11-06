@@ -61,7 +61,7 @@ export default function WakeUpTimesScreen() {
             entering={FadeInDown.delay(200 * index)
               .duration(1000)
               .springify()}
-            className="bg-teal-700 p-4 m-2 rounded-lg w-[30%] justify-center items-center"
+            className="bg-teal-700 p-4 m-2 rounded-lg w-[30%] justify-center items-center	border-2 border-neutral-400"
           >
             <TouchableOpacity
               onPress={() => handleTimePress(time)} // Chama a função para mostrar o alerta

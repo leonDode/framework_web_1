@@ -26,11 +26,8 @@ export default function SignUpScreen() {
         await setDoc(doc(firestore, "users", userID), {
           email,
           password,
-          createdAt: new Date(), // Armazena a data de criação da conta
+          createdAt: new Date(),
         });
-
-        // Redireciona para a tela de login
-        navigation.push("Login");
       } catch (error) {
         console.error("Erro ao criar conta:", error.message);
       }
@@ -105,7 +102,7 @@ export default function SignUpScreen() {
               className="w-full bg-cyan-400 p-3 rounded-2xl mb-3"
               onPress={handleSignUp}
             >
-              <Text className="text-xl font-bold text-white text-center">
+              <Text className="text-xl font-bold text-white text-center font-custom">
                 Cadastrar-se
               </Text>
             </TouchableOpacity>
@@ -115,9 +112,11 @@ export default function SignUpScreen() {
             entering={FadeInDown.delay(800).duration(1000).springify()}
             className="flex-row justify-center"
           >
-            <Text className="text-white">Já tem uma conta? Faça </Text>
+            <Text className="text-white font-custom">
+              Já tem uma conta? Faça{" "}
+            </Text>
             <TouchableOpacity onPress={() => navigation.push("Login")}>
-              <Text className="text-cyan-400">Login</Text>
+              <Text className="text-cyan-400 font-custom">Login</Text>
             </TouchableOpacity>
           </Animated.View>
         </View>

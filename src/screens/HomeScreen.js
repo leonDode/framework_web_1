@@ -40,8 +40,8 @@ export default function HomeScreen() {
               className="py-2 px-4 rounded"
               onPress={() => Alert.alert("Botão 1 Pressionado")}
             >
-              <Text className="text-white text-lg text-center">
-                Quando devo ir pra cama?
+              <Text className="font-custom  text-white text-lg text-center">
+                Quando ir pra cama
               </Text>
             </TouchableOpacity>
           </Animated.View>
@@ -54,7 +54,7 @@ export default function HomeScreen() {
               className="py-2 px-4 rounded"
               onPress={() => navigation.navigate("WakeUp")}
             >
-              <Text className="text-white text-lg text-center">
+              <Text className=" font-custom text-white text-lg text-center">
                 Vai Dormir Agora?
               </Text>
             </TouchableOpacity>
@@ -64,9 +64,11 @@ export default function HomeScreen() {
             entering={FadeInDown.delay(600).duration(1000).springify()}
             className="flex-row justify-center"
           >
-            <Text className="text-white">O que é ciclo circadiano? </Text>
+            <Text className=" font-custom text-white">
+              O que é ciclo circadiano?{" "}
+            </Text>
             <TouchableOpacity>
-              <Text className="text-cyan-400">Saiba Mais</Text>
+              <Text className="font-custom text-cyan-400">Saiba Mais</Text>
             </TouchableOpacity>
           </Animated.View>
         </View>

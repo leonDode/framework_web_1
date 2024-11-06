@@ -36,15 +36,22 @@ export default function AlarmScreen({ route }) {
 
   return (
     <View className="bg-cyan-950 h-full w-full flex justify-center items-center">
-      <Text className="text-white text-2xl mb-4">Alarme Definido!</Text>
-      <Text className="text-white text-lg mb-8">Você acordará às:</Text>
-      <Text className="text-yellow-500 text-4xl">{time}</Text>
-
+      <Text className="text-white text-2xl mb-4 font-custom">
+        Alarme Definido!
+      </Text>
+      <Text className="text-white text-lg mb-8 font-custom">
+        Você acordará às:
+      </Text>
+      <View className="bg-black w-[150] h-[70] justify-center items-center border-2 border-cyan-800">
+        <Text className="text-yellow-500 text-4xl font-custom">{time}</Text>
+      </View>
       <TouchableOpacity
         className="mt-8 bg-cyan-400 py-2 px-4 rounded"
         onPress={() => navigation.goBack()}
       >
-        <Text className="text-white text-lg text-center">Voltar</Text>
+        <Text className="text-white text-lg text-center font-custom">
+          Voltar
+        </Text>
       </TouchableOpacity>
     </View>
   );
