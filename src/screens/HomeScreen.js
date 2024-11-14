@@ -32,7 +32,7 @@ export default function HomeScreen() {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <View className=" h-full w-full">
+      <View className="bg-cyan-950/90 h-full w-full">
         <View className="flex-row justify-center w-full absolute mt-16">
           <Animated.Image
             entering={FadeInUp.delay(200).duration(1000).springify()}
@@ -45,7 +45,7 @@ export default function HomeScreen() {
           <View className="flex items-center mx-4 space-y-4">
             <Animated.View
               entering={FadeInDown.duration(1000).springify()}
-              className="bg-cyan-400 p-5 rounded-2xl w-full border border-cyan-400"
+              className="bg-cyan-500 p-5 rounded-2xl w-full border border-cyan-500"
             >
               <TouchableOpacity
                 className="py-2 px-4 rounded"
@@ -59,7 +59,7 @@ export default function HomeScreen() {
 
             <Animated.View
               entering={FadeInDown.delay(200).duration(1000).springify()}
-              className="bg-black/5 p-5 rounded-2xl w-full border border-cyan-400"
+              className="bg-black/5 p-5 rounded-2xl w-full border border-cyan-500"
             >
               <TouchableOpacity
                 className="py-2 px-4 rounded"
