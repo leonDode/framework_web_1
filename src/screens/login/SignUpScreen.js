@@ -102,7 +102,10 @@ export default function SignUpScreen() {
               className="w-full bg-cyan-400 p-3 rounded-2xl mb-3"
               onPress={handleSignUp}
             >
-              <Text className="text-xl font-bold text-white text-center font-custom">
+              <Text
+                className="text-xl font-bold text-white text-center font-custom"
+                style={{ fontFamily: "NomeDaFonte" }}
+              >
                 Cadastrar-se
               </Text>
             </TouchableOpacity>
@@ -112,11 +115,19 @@ export default function SignUpScreen() {
             entering={FadeInDown.delay(800).duration(1000).springify()}
             className="flex-row justify-center"
           >
-            <Text className="text-white font-custom">
+            <Text
+              className="text-white font-custom"
+              style={{ fontFamily: "NomeDaFonte" }}
+            >
               Já tem uma conta? Faça{" "}
             </Text>
             <TouchableOpacity onPress={() => navigation.push("Login")}>
-              <Text className="text-cyan-400 font-custom">Login</Text>
+              <Text
+                className="text-cyan-400 font-custom"
+                style={{ fontFamily: "NomeDaFonte" }}
+              >
+                Login
+              </Text>
             </TouchableOpacity>
           </Animated.View>
         </View>

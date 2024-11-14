@@ -22,7 +22,10 @@ export default function LoginScreen() {
 
   return (
     <View className="bg-cyan-950 h-full w-full">
-      <View className="flex-row justify-center w-full absolute mt-8">
+      <View
+        className="flex-row justify-center w-full absolute mt-8"
+        style={{ fontFamily: "NomeDaFonte" }}
+      >
         <Animated.Image
           entering={FadeInUp.delay(200).duration(1000).springify()}
           className="h-[300] w-[520]"
@@ -41,7 +44,7 @@ export default function LoginScreen() {
               placeholderTextColor="white"
               value={email}
               onChangeText={setEmail}
-              style={{ color: "white" }}
+              style={{ color: "white", fontFamily: "NomeDaFonte" }}
             />
           </Animated.View>
 
@@ -67,7 +70,10 @@ export default function LoginScreen() {
               className="w-full bg-cyan-400 p-3 rounded-2xl mb-3"
               onPress={handleLogin}
             >
-              <Text className="text-xl font-bold text-white text-center font-custom">
+              <Text
+                className="text-xl font-bold text-white text-center font-custom"
+                style={{ fontFamily: "NomeDaFonte" }}
+              >
                 Login
               </Text>
             </TouchableOpacity>
@@ -77,11 +83,19 @@ export default function LoginScreen() {
             entering={FadeInDown.delay(600).duration(1000).springify()}
             className="flex-row justify-center"
           >
-            <Text className="text-white font-custom">
+            <Text
+              className="text-white font-custom"
+              style={{ fontFamily: "NomeDaFonte" }}
+            >
               Ainda não tem uma conta?{" "}
             </Text>
             <TouchableOpacity onPress={() => navigation.push("SignUp")}>
-              <Text className="text-cyan-400 font-custom">Cadastre-se</Text>
+              <Text
+                className="text-cyan-400 font-custom"
+                style={{ fontFamily: "NomeDaFonte" }}
+              >
+                Cadastre-se
+              </Text>
             </TouchableOpacity>
           </Animated.View>
         </View>

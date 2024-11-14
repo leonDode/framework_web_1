@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  ImageBackground,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
@@ -45,40 +51,46 @@ export default function WakeUpTimesScreen() {
   };
 
   return (
-    <View className="bg-cyan-950 h-full w-full flex justify-center items-center">
-      <Text className="text-white text-2xl text-center mb-4">
-        Vai Dormir Agora?
-      </Text>
+    <ImageBackground
+      source={require("../../assets/images/bg.jpg")}
+      style={{ flex: 1 }}
+      resizeMode="cover"
+    >
+      <View className=" h-full w-full flex justify-center items-center">
+        <Text className="text-white text-2xl text-center mb-4">
+          Vai Dormir Agora?
+        </Text>
 
-      <Text className="text-white text-lg text-center mb-4">
-        Horários ideais para acordar:
-      </Text>
+        <Text className="text-white text-lg text-center mb-4">
+          Horários ideais para acordar:
+        </Text>
 
-      <View className="flex flex-wrap flex-row justify-center items-center w-full px-4">
-        {wakeUpTimes.map((time, index) => (
-          <Animated.View
-            key={index}
-            entering={FadeInDown.delay(200 * index)
-              .duration(1000)
-              .springify()}
-            className="bg-teal-700 p-4 m-2 rounded-lg w-[30%] justify-center items-center	border-2 border-neutral-400"
-          >
-            <TouchableOpacity
-              onPress={() => handleTimePress(time)} // Chama a função para mostrar o alerta
-              className="flex justify-center items-center "
+        <View className="flex flex-wrap flex-row justify-center items-center w-full px-4">
+          {wakeUpTimes.map((time, index) => (
+            <Animated.View
+              key={index}
+              entering={FadeInDown.delay(200 * index)
+                .duration(1000)
+                .springify()}
+              className="bg-teal-700 p-4 m-2 rounded-lg w-[30%] justify-center items-center	border-2 border-neutral-400"
             >
-              <Text className="text-white text-lg">{time}</Text>
-            </TouchableOpacity>
-          </Animated.View>
-        ))}
-      </View>
+              <TouchableOpacity
+                onPress={() => handleTimePress(time)} // Chama a função para mostrar o alerta
+                className="flex justify-center items-center "
+              >
+                <Text className="text-white text-lg">{time}</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          ))}
+        </View>
 
-      <TouchableOpacity
-        className="mt-8 bg-cyan-400 py-2 px-4 rounded"
-        onPress={() => navigation.goBack()}
-      >
-        <Text className="text-white text-lg text-center">Voltar</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity
+          className="mt-8 bg-cyan-400 py-2 px-4 rounded"
+          onPress={() => navigation.goBack()}
+        >
+          <Text className="text-white text-lg text-center">Voltar</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }

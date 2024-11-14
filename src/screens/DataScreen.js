@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, ImageBackground } from "react-native";
 import { collection, getDocs } from "firebase/firestore";
 import { LineChart } from "react-native-chart-kit";
 import { auth, firestore } from "../firebase";
@@ -56,43 +56,49 @@ export default function DataScreen() {
   };
 
   return (
-    <View className="flex-1 justify-center items-center p-4 bg-gray-800">
-      <Text className="text-white text-2xl mb-6 font-custom">
-        Histórico de Horários de Sono
-      </Text>
-      {sleepData.length > 0 ? (
-        <LineChart
-          data={chartData}
-          width={Dimensions.get("window").width - 32} // Largura do gráfico
-          height={220}
-          yAxisSuffix="h" // Sufixo para as unidades de tempo no eixo Y
-          chartConfig={{
-            backgroundColor: "#1f2937",
-            backgroundGradientFrom: "#3b82f6",
-            backgroundGradientTo: "#2563eb",
-            decimalPlaces: 1, // Casas decimais no eixo Y
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: "6",
-              strokeWidth: "2",
-              stroke: "#ffa726",
-            },
-          }}
-          bezier // Linha curva
-          style={{
-            marginVertical: 8,
-            borderRadius: 16,
-          }}
-        />
-      ) : (
-        <Text className="text-white text-lg font-custom">
-          Nenhum dado de sono disponível.
+    <ImageBackground
+      source={require("../../assets/images/bg.jpg")}
+      style={{ flex: 1 }}
+      resizeMode="cover"
+    >
+      <View className="flex-1 justify-center items-center p-4">
+        <Text className="text-white text-2xl mb-6 font-custom">
+          Histórico de Horários de Sono
         </Text>
-      )}
-    </View>
+        {sleepData.length > 0 ? (
+          <LineChart
+            data={chartData}
+            width={Dimensions.get("window").width - 32} // Largura do gráfico
+            height={220}
+            yAxisSuffix="h" // Sufixo para as unidades de tempo no eixo Y
+            chartConfig={{
+              backgroundColor: "#1f2937",
+              backgroundGradientFrom: "#3b82f6",
+              backgroundGradientTo: "#2563eb",
+              decimalPlaces: 1, // Casas decimais no eixo Y
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+              propsForDots: {
+                r: "6",
+                strokeWidth: "2",
+                stroke: "#ffa726",
+              },
+            }}
+            bezier // Linha curva
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
+        ) : (
+          <Text className="text-white text-lg font-custom">
+            Nenhum dado de sono disponível.
+          </Text>
+        )}
+      </View>
+    </ImageBackground>
   );
 }

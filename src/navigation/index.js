@@ -9,6 +9,7 @@ import SignUpScreen from "../screens/login/SignUpScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import WakeUpTimesScreen from "../screens/WakeUpTimes";
+import SaibaMais from "../screens/SaibaMais";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -112,6 +113,7 @@ function AppNavigation() {
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Main" component={MainTabs} />
       <Stack.Screen name="WakeUp" component={WakeUpTimesScreen} />
+      <Stack.Screen name="SaibaMais" component={SaibaMais} />
     </Stack.Navigator>
   );
 }

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Alert,
   ImageBackground,
+  Linking,
 } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
@@ -32,7 +33,7 @@ export default function HomeScreen() {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <View className="bg-cyan-950/90 h-full w-full">
+      <View className="S h-full w-full">
         <View className="flex-row justify-center w-full absolute mt-16">
           <Animated.Image
             entering={FadeInUp.delay(200).duration(1000).springify()}
@@ -51,7 +52,10 @@ export default function HomeScreen() {
                 className="py-2 px-4 rounded"
                 onPress={() => Alert.alert("Botão 1 Pressionado")}
               >
-                <Text className="font-custom text-white text-lg text-center">
+                <Text
+                  className="font-custom text-white text-lg text-center"
+                  style={{ fontFamily: "NomeDaFonte" }}
+                >
                   Quando ir pra cama
                 </Text>
               </TouchableOpacity>
@@ -65,7 +69,10 @@ export default function HomeScreen() {
                 className="py-2 px-4 rounded"
                 onPress={() => navigation.navigate("WakeUp")}
               >
-                <Text className="font-custom text-white text-lg text-center">
+                <Text
+                  className="font-custom text-white text-lg text-center"
+                  style={{ fontFamily: "NomeDaFonte" }}
+                >
                   Vai Dormir Agora?
                 </Text>
               </TouchableOpacity>
@@ -75,11 +82,21 @@ export default function HomeScreen() {
               entering={FadeInDown.delay(600).duration(1000).springify()}
               className="flex-row justify-center"
             >
-              <Text className="font-custom text-white">
+              <Text
+                className="font-custom text-white"
+                style={{ fontFamily: "NomeDaFonte" }}
+              >
                 O que é ciclo circadiano?{" "}
               </Text>
-              <TouchableOpacity>
-                <Text className="font-custom text-cyan-400">Saiba Mais</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("SaibaMais")}
+              >
+                <Text
+                  className="font-custom text-cyan-400"
+                  style={{ fontFamily: "NomeDaFonte" }}
+                >
+                  Saiba Mais
+                </Text>
               </TouchableOpacity>
             </Animated.View>
           </View>
