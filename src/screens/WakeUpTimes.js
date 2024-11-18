@@ -8,10 +8,12 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { ArrowLeftIcon } from "react-native-heroicons/solid"; // Importando o ícone
 
 export default function WakeUpTimesScreen() {
   const navigation = useNavigation();
   const [wakeUpTimes, setWakeUpTimes] = useState([]);
+  const [selectedTime, setSelectedTime] = useState(null); // Estado para guardar o horário selecionado
 
   useEffect(() => {
     calculateWakeUpTimes();
@@ -33,9 +35,17 @@ export default function WakeUpTimesScreen() {
   };
 
   const handleTimePress = (time) => {
+    if (selectedTime === time) {
+      setSelectedTime(null); // Desmarca o horário se ele já estiver selecionado
+    } else {
+      setSelectedTime(time); // Marca o horário
+    }
+  };
+
+  const handleDefineTime = () => {
     Alert.alert(
       "Definir Alarme",
-      `Você gostaria de definir um alarme para ${time}?`,
+      `Você gostaria de definir um alarme para ${selectedTime}?`,
       [
         {
           text: "Não",
@@ -44,7 +54,8 @@ export default function WakeUpTimesScreen() {
         },
         {
           text: "Sim",
-          onPress: () => navigation.navigate("Alarm Clock", { time }),
+          onPress: () =>
+            navigation.navigate("Alarm Clock", { time: selectedTime }),
         },
       ]
     );
@@ -56,40 +67,71 @@ export default function WakeUpTimesScreen() {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <View className=" h-full w-full flex justify-center items-center">
-        <Text className="text-white text-2xl text-center mb-4">
-          Vai Dormir Agora?
-        </Text>
-
-        <Text className="text-white text-lg text-center mb-4">
-          Horários ideais para acordar:
-        </Text>
-
-        <View className="flex flex-wrap flex-row justify-center items-center w-full px-4">
-          {wakeUpTimes.map((time, index) => (
-            <Animated.View
-              key={index}
-              entering={FadeInDown.delay(200 * index)
-                .duration(1000)
-                .springify()}
-              className="bg-teal-700 p-4 m-2 rounded-lg w-[30%] justify-center items-center	border-2 border-neutral-400"
-            >
-              <TouchableOpacity
-                onPress={() => handleTimePress(time)} // Chama a função para mostrar o alerta
-                className="flex justify-center items-center "
-              >
-                <Text className="text-white text-lg">{time}</Text>
-              </TouchableOpacity>
-            </Animated.View>
-          ))}
-        </View>
-
+      <View className="h-full w-full">
+        {/* Ícone de voltar */}
         <TouchableOpacity
-          className="mt-8 bg-cyan-400 py-2 px-4 rounded"
           onPress={() => navigation.goBack()}
+          className="absolute top-6 left-4 z-10 p-2 bg-black/50 rounded-full mt-10"
         >
-          <Text className="text-white text-lg text-center">Voltar</Text>
+          <ArrowLeftIcon color="white" size={24} />
         </TouchableOpacity>
+
+        <View className="h-full w-full flex justify-center items-center">
+          <Text className="text-white text-4xl text-center mb-4 font-extrabold">
+            Vai Dormir Agora?
+          </Text>
+
+          <Text className="text-white text-xl text-center mb-4 font-extrabold">
+            Horários ideais para acordar:
+          </Text>
+
+          <View className="flex flex-wrap flex-row justify-center items-center w-full px-4">
+            {wakeUpTimes.map((time, index) => (
+              <Animated.View
+                key={index}
+                entering={FadeInDown.delay(200 * index)
+                  .duration(1000)
+                  .springify()}
+                className={`p-4 m-2 rounded-lg w-[30%] justify-center items-center border-2 ${
+                  selectedTime === time
+                    ? "bg-blue-500 border-blue-600"
+                    : "bg-teal-700 border-neutral-400"
+                }`}
+              >
+                <TouchableOpacity
+                  onPress={() => handleTimePress(time)}
+                  className="flex justify-center items-center "
+                >
+                  <Text
+                    className={`text-lg ${
+                      selectedTime === time ? "text-black" : "text-white"
+                    }`}
+                  >
+                    {time}
+                  </Text>
+                </TouchableOpacity>
+              </Animated.View>
+            ))}
+          </View>
+
+          {selectedTime ? (
+            <TouchableOpacity
+              className="mt-8 bg-blue-500 py-2 px-4 rounded"
+              onPress={handleDefineTime}
+            >
+              <Text className="text-white text-lg text-center">
+                Definir Horário
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              className="mt-8 bg-cyan-400 py-2 px-4 rounded"
+              onPress={() => navigation.goBack()}
+            >
+              <Text className="text-white text-lg text-center">Voltar</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </ImageBackground>
   );
