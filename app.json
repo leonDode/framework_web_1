@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Sleep.Company",
-    "slug": "Sleep.Company",
+    "name": "Sleep-Company",
+    "slug": "Sleep-Company",
     "version": "1.0.0",
     "orientation": "portrait",
     "jsEngine": "jsc",
@@ -12,12 +12,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
-
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/welcome.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.dode1125.SleepCompany"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "05ad697f-bd32-4c37-b893-569ac50d3f6c"
       }
     }
   }
