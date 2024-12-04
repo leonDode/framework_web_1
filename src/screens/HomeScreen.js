@@ -50,7 +50,7 @@ export default function HomeScreen() {
             >
               <TouchableOpacity
                 className="py-2 px-4 rounded"
-                onPress={() => Alert.alert("Botão 1 Pressionado")}
+                onPress={() => navigation.navigate("SleepTimes")}
               >
                 <Text
                   className="font-custom text-white text-lg text-center"

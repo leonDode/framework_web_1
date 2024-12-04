@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/welcome.png",
@@ -24,7 +22,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "05ad697f-bd32-4c37-b893-569ac50d3f6c"
+        "projectId": "ddad401a-93e8-43fe-a69c-d9b2adb43e1f"
       }
     }
   }

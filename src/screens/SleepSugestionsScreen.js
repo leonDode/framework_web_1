@@ -3,35 +3,38 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Alert,
   ImageBackground,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { ArrowLeftIcon } from "react-native-heroicons/solid"; // Importando o ícone
+import { ArrowLeftIcon } from "react-native-heroicons/solid";
 
-export default function WakeUpTimesScreen() {
+export default function SleepSuggestionsScreen({ route }) {
   const navigation = useNavigation();
-  const [wakeUpTimes, setWakeUpTimes] = useState([]);
-  const [selectedTime, setSelectedTime] = useState(null); // Estado para guardar o horário selecionado
+  const { wakeTime } = route.params; // Horário de acordar recebido da rota anterior
+  const [sleepSuggestions, setSleepSuggestions] = useState([]);
+  const [selectedTime, setSelectedTime] = useState(null);
 
   useEffect(() => {
-    calculateWakeUpTimes();
-  }, []);
+    calculateSleepTimes(wakeTime);
+  }, [wakeTime]);
 
-  const calculateWakeUpTimes = () => {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() + 15); // Adiciona 15 minutos ao horário atual
+  const calculateSleepTimes = (wakeTime) => {
+    const [hours, minutes] = wakeTime.split(":").map(Number);
+    const wakeDate = new Date();
+    wakeDate.setHours(hours);
+    wakeDate.setMinutes(minutes);
 
-    const times = [];
+    const suggestions = [];
     for (let i = 1; i <= 6; i++) {
-      now.setMinutes(now.getMinutes() + 90); // Adiciona 90 minutos para cada ciclo
-      const hours = now.getHours().toString().padStart(2, "0");
-      const minutes = now.getMinutes().toString().padStart(2, "0");
-      times.push(`${hours}:${minutes}`);
+      wakeDate.setMinutes(wakeDate.getMinutes() - 90); // Subtrai 90 minutos por ciclo
+      const sleepHours = wakeDate.getHours().toString().padStart(2, "0");
+      const sleepMinutes = wakeDate.getMinutes().toString().padStart(2, "0");
+      suggestions.unshift(`${sleepHours}:${sleepMinutes}`); // Adiciona ao início da lista
     }
 
-    setWakeUpTimes(times);
+    setSleepSuggestions(suggestions);
   };
 
   const handleTimePress = (time) => {
@@ -42,23 +45,21 @@ export default function WakeUpTimesScreen() {
     }
   };
 
-  const handleDefineTime = () => {
-    Alert.alert(
-      "Definir Alarme",
-      `Você gostaria de definir um alarme para ${selectedTime}?`,
-      [
-        {
-          text: "Não",
-          onPress: () => console.log("Alarme não definido"),
-          style: "cancel",
-        },
-        {
-          text: "Sim",
-          onPress: () =>
-            navigation.navigate("Alarm Clock", { time: selectedTime }),
-        },
-      ]
-    );
+  const handleSetAlarm = () => {
+    if (!selectedTime) {
+      Alert.alert("Selecione um horário para dormir primeiro!");
+      return;
+    }
+
+    // Exemplo: Redirecionar para a tela de alarme
+    navigation.navigate("Alarm Clock", { time: selectedTime });
+
+    Alert.alert("Alarme Definido", `Alarme configurado para ${selectedTime}.`, [
+      {
+        text: "OK",
+        onPress: () => console.log("Alarme configurado!"),
+      },
+    ]);
   };
 
   return (
@@ -78,15 +79,15 @@ export default function WakeUpTimesScreen() {
 
         <View className="h-full w-full flex justify-center items-center">
           <Text className="text-white text-4xl text-center mb-4 font-extrabold">
-            Vai Dormir Agora?
+            Horários Ideais para Dormir
           </Text>
 
-          <Text className="text-white text-xl text-center mb-4 font-extrabold">
-            Horários ideais para acordar:
+          <Text className="text-white text-xl text-center mb-4">
+            Baseado no horário de acordar às {wakeTime}
           </Text>
 
           <View className="flex flex-wrap flex-row justify-center items-center w-full px-4">
-            {wakeUpTimes.map((time, index) => (
+            {sleepSuggestions.map((time, index) => (
               <Animated.View
                 key={index}
                 entering={FadeInDown.delay(200 * index)
@@ -114,23 +115,14 @@ export default function WakeUpTimesScreen() {
             ))}
           </View>
 
-          {selectedTime ? (
-            <TouchableOpacity
-              className="mt-8 bg-sky-800 py-2 px-4 rounded"
-              onPress={handleDefineTime}
-            >
-              <Text className="text-white text-lg text-center">
-                Definir Horário
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              className="mt-8 bg-cyan-400 py-2 px-4 rounded"
-              onPress={() => navigation.goBack()}
-            >
-              <Text className="text-white text-lg text-center">Voltar</Text>
-            </TouchableOpacity>
-          )}
+          <TouchableOpacity
+            className="mt-8 bg-sky-900 py-2 px-4 rounded"
+            onPress={handleSetAlarm}
+          >
+            <Text className="text-white text-lg text-center">
+              Definir Alarme
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
